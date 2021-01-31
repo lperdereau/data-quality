@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 
+import argparse
 from numpy import genfromtxt, nanmean, isnan, nanstd, nanmin, nanmax
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--csv", help="Path to the csv file")
+args = parser.parse_args()
 
 months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 
-array_climat_si = genfromtxt('data/inputs/Climat - SI.csv', delimiter=';', dtype=float, skip_header=True)
+array_climat_si = genfromtxt(args.csv, delimiter=';', dtype=float, skip_header=True)
 
 avg_on_months = nanmean(array_climat_si, axis=0)
 print('Moyenne par mois:\n')

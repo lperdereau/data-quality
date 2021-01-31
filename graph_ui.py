@@ -16,7 +16,7 @@ class Cursor(object):
         if not event.inaxes: return
         x, y = event.xdata, event.ydata
         indx = searchsorted(self.x, [x])[0]
-        x = self.x[indx]
+        x = self.x[indx+1]
         y = self.y[indx]
         self.ly.set_xdata(x)
         self.marker.set_data([x],[y])
@@ -43,9 +43,9 @@ def generate_ui(months, array_climat):
     
     plt.axis([0, 32, nanmin(year_array)-5, nanmax(year_array)+5])
     plt.grid(True)
-    l, = plt.plot(range(0, 31, 1), array_climat[:, month], "b:o", lw=2)
+    l, = plt.plot(range(1, 32, 1), array_climat[:, month], "b:o", lw=2)
+    x = [x for x in arange(0, 31) if x%5==0 ]
     ax.set_xlim(right=32)
-    x = [x for x in arange(1, 32) if x%5==0 ]
     ax.set_xticks(x)
     ax.set_xticklabels(x)
     l.set_xdata(range(1, 32))
@@ -73,7 +73,7 @@ def generate_ui(months, array_climat):
                 ax.set_xticklabels(x)
                 l.set_xdata(range(1, 366))
                 l.set_ydata(year_array)
-                self.cursor.x = arange(1, 366)
+                self.cursor.x = arange(len(year_array))
                 self.cursor.y = year_array
                 plt.draw()
 
