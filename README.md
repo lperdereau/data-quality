@@ -23,6 +23,16 @@ pip install -r requirements.txt
 python3 app.py
 ```
 
+## Comment nous avons corriger les erreurs dans le jeu de données
+### Détection des erreurs
+Sur le jeu de donnée nous avons deux types d'erreurs. Nous avons les erreurs de format et d'incohérence des données.
+### Correction des erreurs de formats
+Si la donnée n'est pas exploitable, alors nous faisons la moyenne entre les deux valeurs qui l'entoure. 
+### Correction des erreurs incohérentes du fichier
+Il y a des erreurs incohérentes dans le fichier des données, par exemple au mois d'août, nous avons une 48 °C qui ressort. Pour la détecter, nous nous sommes basé sur l'écart type entre les données, si une donnée n'est pas entre son prédécésseur moins et plus l'écart type du mois alors la données est mauvaise. Par exemple, si au mois de mars nous avons un écart type de 5 et que nous avons 15 °C, alors la prochaine valeur devra être en 10 et 20 °C, si elle est sort de la borne définie cela signifie que la données n'est pas bonne. Une fois détectés, nous faisons comme pour la correction d'erreur de formatn, nous faisons la moyenne entre les deux valeurs qui l'entoure
+## Localisation du SI-Erreur
+Nous supposons que les données du **SI-Erreur** proviennent d'Oslo ou Stockholm ou Helsinki.
+
 ## Auteurs
 
 👤 **Louis Perdereau**
