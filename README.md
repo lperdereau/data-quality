@@ -60,10 +60,6 @@ L'exercice 3 à pour but de répondre aux questions :
 
 - Recommencez avec le jeu SI-erreur après avoir corrigé les valeurs en erreur. Précisez vos méthodes.
 - Les données corrigées sont elles proches des valeurs sans erreur ?
-- A partir de données opendata du second fichier, retrouver le type de climat.
-- Reprendre les données typiques de la localisation proche fournies en complément dans le fichier `data/inputs/Savukoski kirkonkyla.csv`, comparer les écarts. Qu'en concluez vous ?
-- De quelle capitale européenne avez vous eu les données ?
-
 
 **Exécution**
 ```sh
@@ -93,18 +89,37 @@ Si la donnée n'est pas exploitable, alors nous faisons la moyenne entre les deu
 
 Il y a des erreurs incohérentes dans le fichier des données, par exemple au mois d'août, nous avons une 48 °C qui ressort. Pour la détecter, nous nous sommes basé sur l'écart type entre les données, si une donnée n'est pas entre son prédécésseur moins et plus l'écart type fois 3 du mois alors la données est mauvaise. Par exemple, si au mois de mars nous avons un écart type de 5 et que nous avons 15 °C, alors la prochaine valeur devra être en 0 et 30 °C, si elle est sort de la borne définie cela signifie que la données n'est pas bonne. Une fois détectés, nous faisons comme pour la correction d'erreur de formatn, nous faisons la moyenne entre les deux valeurs qui l'entoure
 
-**Localisation du SI-Erreur**
+## Exercice 4
+L'exercice 4 à pour but de répondre aux questions :
+
+- A partir de données opendata du second fichier, retrouver le type de climat.
+- Reprendre les données typiques de la localisation proche fournies en complément dans le fichier `data/inputs/Savukoski kirkonkyla.csv`, comparer les écarts. Qu'en concluez vous ?
+- De quelle capitale européenne avez vous eu les données ?
+
+**Exécution**
+```sh
+cd data/outputs
+python ../../exo4.py --csv "Climat - SI erreur.csv,Helsinki - 2018 erreur.csv,Oslo - 2018 erreur.csv"
+```
+D'après le fichier Savukosi kirkonkyla, nous avons pu déterminer que le climat était le climat nord europeen.
+
 Pour trouver la localisation, nous nous sommes basé sur plusieurs sites pour vérifier, nos sites sont:
  - https://nomadlist.com/climate-finder
  - https://www.infoclimat.fr/
+ - https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities
 
 Le premier sites, nous a permis de sortir une petite liste de ville. Le deuxième site quand a lui nous a permis de faire une vérification des données à la main.
 Pour faire nos comparaisons, nous nous sommes basés sur la moyenne et l'écart type des mois. De plus, nous avons essayé de regarder les courbes par mois, mais cela est compliqué car nous nous sommes pas certains de nos données.
 
 :warning: Il est difficile de se baser sur le minimum et le maximum car nous ne sommes pas sur des données fournis.
 
-Nous supposons que les données du _"SI-Erreur"_ proviennent d'Oslo.
+Après avoir exploité les deux sites, nous avons exécuté l'exercice 4 pour faire une comparaison de donnée entre notre SI-Erreur et les deux villes que nous avons choisis (Oslo et Helsinki). Nous avons récupéré les données du _kaggle_.
 
+L'exercice 4 nous donne ce graphique:
+
+![dataComparaison](docs/dataComparaison.png)
+
+Nous supposons donc que la ville du SI-ERREUR est Helsinki.
 </div>
 
 ## Auteurs
